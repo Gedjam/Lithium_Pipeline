@@ -99,7 +99,7 @@ echo "Running FreeSurfer"
 #Get the name of the T1 image and make it a folder
 T1_File=$(echo "$Proton_T1" | sed 's:.*/::')
 #Run the recon-all script 
-sh ${Curren_Dir}/Run_Reconall.sh $T1_File $Output_Folder
+sh ${Curren_Dir}/Run_Reconall.sh $Proton_T1 $T1_File $Output_Folder
 #Now make the output of the freesurfer directory 
 Free_Surf_Dir=${Output_Folder}/${T1_File}
 fi 
