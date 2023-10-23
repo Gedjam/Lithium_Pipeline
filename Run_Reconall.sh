@@ -1,7 +1,8 @@
 #!/bin/bash
-
+## If user hasn't ran reconall prior to running Lithium Main
+## Simple script to use a simple recon-all command
 echo "Running Recon all, this may take sometime!"
-##Then recon all the post-OP data (add a if statement if needs to be ran for Pre-OP data also)
+
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
 
 T1_Directory="$1"
