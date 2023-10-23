@@ -17,9 +17,9 @@ These scripts are designed to be ran in terminal on mac or linux OS. After downl
 You MUST run these scripts within the "Lithium_Pipeline-main" folder. 
 After chaning directory to the folder, in terminal call sh Lithium_Main.sh for usage. 
 Example:
-* sh Lithium_Main.sh -l Lithium_Image -t T1w_Lithium_Coil -f FreeSurfer_Output_Directory 
+* sh Lithium_Main.sh -l Lithium_Image -t T1w_Lithium_Coil -f FreeSurfer_Output_Directory -o Ouput_Directory 
 OR
-* 
+* sh Lithium_Main.sh -l Lithium_Image -t T1w_Lithium_Coil -p Proton_T1w_Image -o Output_Directory
 
 More information:
 ### If you have an already FreeSurfered T1 weighted image (Ran on a standard "Reconall protocall")
