@@ -292,10 +292,13 @@ echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_
 echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/Complete_Array_STD.csv
 
 #Add the outputs from individual subjects into one overall subject
-for SUBJ_ID in $(cat $List)
+for i in $(seq 1 $Subject_Number)
     do 
-    cat ${Overall_Stats}/stats/${SUBJ_ID}_Mean_Values.csv >> ${Overall_Stats}/stats/Complete_Array_Mean.csv
-    cat ${Overall_Stats}/stats/${SUBJ_ID}_STD_Values.csv >> ${Overall_Stats}/stats/Complete_Array_STD.csv
+    SUBJ_ID=$(sed "${i}q;d" $List)
+    Output_Folder_Subj=$(sed "${i}q;d" $Output_Folder)
+
+    cat ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv >> ${Overall_Stats}/stats/Complete_Array_Mean.csv
+    cat ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv >> ${Overall_Stats}/stats/Complete_Array_STD.csv
 done
 
 #Completed
