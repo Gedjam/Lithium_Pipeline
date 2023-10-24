@@ -17,14 +17,17 @@ print_usage() {
   printf "
   Usage: 
   
+  Batch version of this requirest a .txt list for each of the -i, -l, -t, -f or -p, -o arguements.
+  Lists should be perline the filepaths for each repsective flag.
+  Just a folder pathway is required for the flag -s, (i.e. Overall stats folder)
+
   ***If you have an already FreeSurfered T1 weighted image (Ran on a standard "Reconall protocall")***
-  sh Batch_Lithium_Main.sh -i <Pathway/to/Subjects/List.txt> -l <Pathway/to/Lithium_Image.nii.gz> -t <Pathway/to/T1w_Lithium_Image.nii.gz> -f <Pathway/to/FreeSurfer/Directory> -o <Pathway/to/Output>
+  sh Batch_Lithium_Main.sh -i <Pathway/to/Subjects/List.txt> -l <Pathway/to/Lithium_Image.nii.gz> -t <Pathway/to/T1w_Lithium_Image.nii.gz> -f <Pathway/to/FreeSurfer/Directory> -o <Pathway/to/Output> -s <Output
 
   ***If you have a T1w image that hasn't been FreeSurfered, Use this method (Caution, this method will take time!!! (~6 hours a patient))
   sh Batch_Lithium_Main.sh -i <Pathway/to/Subjects/List.txt> -l <Pathway/to/Lithium_Image.nii.gz> -t <Pathway/to/T1w_Lithium_Image.nii.gz> -p <Pathway/to/Proton_T1w_image.nii.gz> -o <Pathway/to/Output>
    "
 }
-
 
 
 ##################
@@ -40,7 +43,7 @@ Output_Folder='Output'
 
 
 #Flag switch board for batch version
-while getopts "i:g:l:t:p:f:o:" OPT; do
+while getopts "i:g:l:t:p:f:o:s:" OPT; do
   case $OPT in
         i) #Input text file
     List=$OPTARG
@@ -63,6 +66,9 @@ while getopts "i:g:l:t:p:f:o:" OPT; do
         o) #Output_Folder
     Output_Folder=$OPTARG
     ;;
+        s) #Output of Overall stats folder
+    Overall_Stats=$OPTARG
+    ;;
     *) #No Inputs output Usage
         print_usage
        exit 1 
@@ -81,8 +87,48 @@ if [[ ! -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
     echo "Both Header info and FreeSurfer need to be run"
     for i in $(seq 1 $Subject_Number)
         do 
-            sh ${Current_Dir}/Lithium_Main.sh -l $(sed "${i}q;d" $List -g $g_flag/${i}/ -l $Lithium_Image -t $Lithium_T1 -p $Proton_T1 -o $Output_Folder
-            echo "Subject ${i} is completed!" 
+            SUBJ_ID=$(sed "${i}q;d" $List)
+            #Calling the main
+            sh ${Current_Dir}/Lithium_Main.sh \
+            -g $(sed "${i}q;d" $g_flag) \
+            -l $(sed "${i}q;d" $Lithium_Image) \
+            -t $(sed "${i}q;d" $Lithium_T1) \
+            -p $(sed "${i}q;d" $Proton_T1) \
+            -o $(sed "${i}q;d" $Output_Folder)
+            echo "Subject ${i} is Processed!" 
+
+            #Attaching a simple label to the folder
+            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            
+            #Will make this more elegant one day, creating an overall tab
+            Mean_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+
+            #Will make this more elegant one day, creating an overall tab
+            STD_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+
+            echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv
+
     done
 
 elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
@@ -91,8 +137,46 @@ elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
 
     for i in $(seq 1 $Subject_Number)
         do
-            sh ${Current_Dir}/Lithium_Main.sh -l $List -l $Lithium_Image -t $Lithium_T1 -p $Proton_T1 -o $Output_Folder
+            SUBJ_ID=$(sed "${i}q;d" $List)
+            #Calling the main
+            sh ${Current_Dir}/Lithium_Main.sh \
+            -l $(sed "${i}q;d" $Lithium_Image) \
+            -t $(sed "${i}q;d" $Lithium_T1) \
+            -p $(sed "${i}q;d" $Proton_T1) \
+            -o $(sed "${i}q;d" $Output_Folder)
             echo "Subject ${i} is completed!" 
+
+            #Attaching a simple label to the folder
+            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            
+            #Will make this more elegant one day, creating an overall tab
+            Mean_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+
+            #Will make this more elegant one day, creating an overall tab
+            STD_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+    
+            echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv
     done
 
 elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
@@ -101,8 +185,48 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
 
     for i in $(seq 1 $Subject_Number)
         do
-            sh ${Current_Dir}/Lithium_Main.sh -l $List -g $g_flag -l $Lithium_Image -t $Lithium_T1 -f $Free_Surf_Dir -o $Output_Folder
-            echo "Subject ${i} is completed!" 
+            SUBJ_ID=$(sed "${i}q;d" $List)
+            #Calling the main
+            sh ${Current_Dir}/Lithium_Main.sh \
+            -g $(sed "${i}q;d" $g_flag) \
+            -l $(sed "${i}q;d" $Lithium_Image) \
+            -t $(sed "${i}q;d" $Lithium_T1) \
+            -f $(sed "${i}q;d" $Free_Surf_Dir) \
+            -o $(sed "${i}q;d" $Output_Folder)
+            echo "Subject ${i} is completed!"
+
+            #Attaching a simple label to the folder, will make these variables one day
+            #easier to pass .txt values between scripts
+            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            
+            #Will make this more elegant one day, creating an overall tab
+            Mean_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+
+            #Will make this more elegant one day, creating an overall tab
+            STD_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+    
+            echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv
     done
 
 elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
@@ -111,39 +235,64 @@ elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
     
         for i in $(seq 1 $Subject_Number)
             do
-            sh ${Current_Dir}/Lithium_Main.sh -l $List -l $Lithium_Image -t $Lithium_T1 -f $Free_Surf_Dir -o $Output_Folder
-            echo "Subject ${i} is completed!" 
+            SUBJ_ID=$(sed "${i}q;d" $List)
+            #Calling the main
+            sh ${Current_Dir}/Lithium_Main.sh \
+            -l $(sed "${i}q;d" $Lithium_Image) \
+            -t $(sed "${i}q;d" $Lithium_T1) \
+            -f $(sed "${i}q;d" $Free_Surf_Dir) \
+            -o $(sed "${i}q;d" $Output_Folder)
+            echo "Subject ${i} is completed!"
+
+            #Attaching a simple label to the folder
+            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            
+            #Will make this more elegant one day, creating an overall tab
+            Mean_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+
+            #Will make this more elegant one day, creating an overall tab
+            STD_Total=$(paste -d',' ${Output_Folder}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
+            ${Output_Folder}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+    
+            echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv 
     done
 fi 
 
 
-#Create a CSV table of all the concentrations
-for i in $(cat $List)
+#After Lithium main has been ran, create a CSV table of all the concentrations
+echo "Now collecting all the information into one single spreadsheet"
+
+mkdir -p $Overall_Stats
+
+echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/Complete_Array_Mean.csv
+echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/Complete_Array_STD.csv
+
+#Add the outputs from individual subjects into one overall subject
+for SUBJ_ID in $(cat $List)
     do 
-###-----------Wrap below into a script to form a spreadsheet---------------###
-
-#I know this is dumb (i'll use arrays soon)
-echo ${SUBJ_ID} > ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}.txt
-
-# Now add the .txt outputs into one large .csv for all the subjects
-
-Mean_Total=$(paste -d',' ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Insula_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Insula_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
-STD_Total=$(paste -d',' ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Frontal_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Frontal_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Temporal_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Temporal_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Insula_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Insula_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Parietal_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Parietal_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Left_Occipital_STD.txt ${Output_Folder}/${SUBJ_ID}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
-
-echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
-echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv
-
-#Add these into a simple .csv file for now
-
-echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Output_Folder}/stats/Complete_Array_Mean.csv
-echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Output_Folder}/stats/Complete_Array_STD.csv
-
-for SUBJ_ID in $(cat $Subj_List)
-do 
-
     cat ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv >> ${Output_Folder}/stats/Complete_Array_Mean.csv
     cat ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv >> ${Output_Folder}/stats/Complete_Array_STD.csv
-done 
-
-
 done
+
+#Completed
+echo "JOB COMPLETED! Please check ${Output_Folder}/stats/Complete_Array_Mean.csv and ${Output_Folder}/stats/Complete_Array_STD.csv"
