@@ -177,8 +177,8 @@ elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
 
-            echo $Mean_Total > $(sed "${i}q;d" $Output_Folder_Subj)/stats/${SUBJ_ID}_Mean_Values.csv
-            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv
+            echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
     done
 
 elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
@@ -228,8 +228,8 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
     
-            echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
-            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv
+            echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
     done
 
 elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
@@ -277,8 +277,8 @@ elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
     
-            echo $Mean_Total > ${Output_Folder}/stats/${SUBJ_ID}_Mean_Values.csv
-            echo $STD_Total > ${Output_Folder}/stats/${SUBJ_ID}_STD_Values.csv 
+            echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
+            echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv 
     done
 fi 
 
