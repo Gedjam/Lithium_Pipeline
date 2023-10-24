@@ -98,7 +98,7 @@ if [[ ! -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             echo "Subject ${i} is Processed!" 
 
             #Attaching a simple label to the folder
-            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            echo ${SUBJ_ID} > ${Output_Folder}/stats/${SUBJ_ID}.txt
             #Make Output folder the current folder
             Output_Folder_Subj=$(sed "${i}q;d" $Output_Folder)
             #Will make this more elegant one day, creating an overall tab
@@ -148,7 +148,7 @@ elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             echo "Subject ${i} is completed!" 
 
             #Attaching a simple label to the folder
-            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            echo ${SUBJ_ID} > ${Output_Folder}/stats/${SUBJ_ID}.txt
             #Make Output folder the current folder
             Output_Folder_Subj=$(sed "${i}q;d" $Output_Folder)
             #Will make this more elegant one day, creating an overall tab
@@ -199,7 +199,7 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
 
             #Attaching a simple label to the folder, will make these variables one day
             #easier to pass .txt values between scripts
-            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            echo ${SUBJ_ID} > ${Output_Folder}/stats/${SUBJ_ID}.txt
             #Make Output folder the current folder
             Output_Folder_Subj=$(sed "${i}q;d" $Output_Folder)
             #Will make this more elegant one day, creating an overall tab
@@ -248,7 +248,7 @@ elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
             echo "Subject ${i} is completed!"
 
             #Attaching a simple label to the folder
-            echo ${SUBJ_ID} >${Output_Folder}/stats/${SUBJ_ID}.txt
+            echo ${SUBJ_ID} > ${Output_Folder}/stats/${SUBJ_ID}.txt
             #Make Output folder the current folder
             Output_Folder_Subj=$(sed "${i}q;d" $Output_Folder)
             #Will make this more elegant one day, creating an overall tab
