@@ -288,8 +288,8 @@ echo "Now collecting all the information into one single spreadsheet"
 
 mkdir -p $Overall_Stats/stats
 
-echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/Complete_Array_Mean.csv
-echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/Complete_Array_STD.csv
+echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/stats/Complete_Array_Mean.csv
+echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/stats/Complete_Array_STD.csv
 
 #Add the outputs from individual subjects into one overall subject
 for i in $(seq 1 $Subject_Number)
