@@ -189,12 +189,12 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
         do
             SUBJ_ID=$(sed "${i}q;d" $List)
             #Calling the main
-            #sh ${Current_Dir}/Lithium_Main.sh \
-            #-g $(sed "${i}q;d" $g_flag) \
-            #-l $(sed "${i}q;d" $Lithium_Image) \
-            #-t $(sed "${i}q;d" $Lithium_T1) \
-            #-f $(sed "${i}q;d" $Free_Surf_Dir) \
-            #-o $(sed "${i}q;d" $Output_Folder) 
+            sh ${Current_Dir}/Lithium_Main.sh \
+            -g $(sed "${i}q;d" $g_flag) \
+            -l $(sed "${i}q;d" $Lithium_Image) \
+            -t $(sed "${i}q;d" $Lithium_T1) \
+            -f $(sed "${i}q;d" $Free_Surf_Dir) \
+            -o $(sed "${i}q;d" $Output_Folder) 
             echo "Subject ${i} is completed!"
 
             #Make Output folder the current folder
