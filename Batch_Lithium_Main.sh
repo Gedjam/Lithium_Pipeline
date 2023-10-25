@@ -103,29 +103,29 @@ if [[ ! -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             echo ${SUBJ_ID} > ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt
             #Will make this more elegant one day, creating an overall tab
             Mean_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Mean.txt)
 
             #Will make this more elegant one day, creating an overall tab
             STD_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
 
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
@@ -153,29 +153,29 @@ elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             echo ${SUBJ_ID} > ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt
             #Will make this more elegant one day, creating an overall tab
             Mean_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Mean.txt)
 
             #Will make this more elegant one day, creating an overall tab
             STD_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
 
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
@@ -189,12 +189,12 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
         do
             SUBJ_ID=$(sed "${i}q;d" $List)
             #Calling the main
-            sh ${Current_Dir}/Lithium_Main.sh \
-            -g $(sed "${i}q;d" $g_flag) \
-            -l $(sed "${i}q;d" $Lithium_Image) \
-            -t $(sed "${i}q;d" $Lithium_T1) \
-            -f $(sed "${i}q;d" $Free_Surf_Dir) \
-            -o $(sed "${i}q;d" $Output_Folder) 
+            #sh ${Current_Dir}/Lithium_Main.sh \
+            #-g $(sed "${i}q;d" $g_flag) \
+            #-l $(sed "${i}q;d" $Lithium_Image) \
+            #-t $(sed "${i}q;d" $Lithium_T1) \
+            #-f $(sed "${i}q;d" $Free_Surf_Dir) \
+            #-o $(sed "${i}q;d" $Output_Folder) 
             echo "Subject ${i} is completed!"
 
             #Make Output folder the current folder
@@ -204,29 +204,29 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
             echo ${SUBJ_ID} > ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt
             #Will make this more elegant one day, creating an overall tab
             Mean_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Mean.txt)
 
             #Will make this more elegant one day, creating an overall tab
             STD_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
     
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
@@ -253,29 +253,29 @@ elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
             echo ${SUBJ_ID} > ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt
             #Will make this more elegant one day, creating an overall tab
             Mean_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_Mean.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_Mean.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Mean.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Mean.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Mean.txt)
 
             #Will make this more elegant one day, creating an overall tab
             STD_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Frontal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Temporal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Insula_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Parietal_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Left_Occipital_STD.txt \
-            ${Output_Folder_Subj}/stats/${SUBJ_ID}_Right_Occipital_STD.txt)
+            ${Output_Folder_Subj}/stats/Left_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_STD.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
     
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv 
