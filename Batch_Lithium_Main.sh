@@ -127,9 +127,22 @@ if [[ ! -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
 
+            #2024.01.25 addition of volume to the output
+            Vol_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder_Subj}/stats/Left_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Vol.txt)
+            
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
-
+            echo $Vol_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Vol_Values.csv
     done
 
 elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
@@ -177,8 +190,23 @@ elif [[ -z $g_flag ]] && [[ ! -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
 
+            #2024.01.25 addition of volume to the output
+            Vol_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder_Subj}/stats/Left_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Vol.txt)
+ 
+
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
+            echo $Vol_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Vol_Values.csv
     done
 
 elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
@@ -227,9 +255,23 @@ elif [[ ! -z $g_flag ]] && [[ -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/Right_Parietal_STD.txt \
             ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
+
+            #2024.01.25 addition of volume to the output
+            Vol_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder_Subj}/stats/Left_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Vol.txt)
     
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
             echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
+            echo $Vol_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Vol_Values.csv
     done
 
 elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
@@ -276,9 +318,23 @@ elif [[ -z $g_flag ]] && [[ -z $Proton_T1 ]];
             ${Output_Folder_Subj}/stats/Right_Parietal_STD.txt \
             ${Output_Folder_Subj}/stats/Left_Occipital_STD.txt \
             ${Output_Folder_Subj}/stats/Right_Occipital_STD.txt)
+
+            #2024.01.25 addition of volume to the output
+            Vol_Total=$(paste -d',' ${Output_Folder_Subj}/stats/${SUBJ_ID}.txt \
+            ${Output_Folder_Subj}/stats/Left_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Frontal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Temporal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Insula_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Parietal_Vol.txt \
+            ${Output_Folder_Subj}/stats/Left_Occipital_Vol.txt \
+            ${Output_Folder_Subj}/stats/Right_Occipital_Vol.txt)
     
             echo $Mean_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv
-            echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv 
+            echo $STD_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv
+            echo $Vol_Total > ${Output_Folder_Subj}/stats/${SUBJ_ID}_Vol_Values.csv 
     done
 fi 
 
@@ -290,6 +346,7 @@ mkdir -p $Overall_Stats/stats
 
 echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/stats/Complete_Array_Mean.csv
 echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/stats/Complete_Array_STD.csv
+echo "Subject_ID,Frontal_Left,Frontal_Right,Temporal_Left,Temporal_Right,Insula_Left,Insula_Right,Parietal_Left,Parietal_Right,Occipital_Left,Occipital_Right" > ${Overall_Stats}/stats/Complete_Array_Voxel_Volume.csv
 
 #Add the outputs from individual subjects into one overall subject
 for i in $(seq 1 $Subject_Number)
@@ -299,7 +356,8 @@ for i in $(seq 1 $Subject_Number)
 
     cat ${Output_Folder_Subj}/stats/${SUBJ_ID}_Mean_Values.csv >> ${Overall_Stats}/stats/Complete_Array_Mean.csv
     cat ${Output_Folder_Subj}/stats/${SUBJ_ID}_STD_Values.csv >> ${Overall_Stats}/stats/Complete_Array_STD.csv
+    cat ${Output_Folder_Subj}/stats/${SUBJ_ID}_Vol_Values.csv >> ${Overall_Stats}/stats/Complete_Array_Voxel_Volume.csv
 done
 
 #Completed
-echo "JOB COMPLETED! Please check ${Overall_Stats}/stats/Complete_Array_Mean.csv and ${Overall_Stats}/stats/Complete_Array_STD.csv"
+echo "JOB COMPLETED! Please check ${Overall_Stats}/stats/Complete_Array_Mean.csv and ${Overall_Stats}/stats/Complete_Array_STD.csv ${Overall_Stats}/stats/Complete_Array_Voxel_Volume.csv"
